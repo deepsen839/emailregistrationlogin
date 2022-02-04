@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+{% block title %}login{% endblock %}
+{% block content %}
+    <form method="POST" action="" novalidate>
+        {% csrf_token %}
+        {% for field in fm.visible_fields %}
+        <div class="row">
+            <div class="col-sm-4"> {{ field.label }}</div>
+            <div class="col-sm-4"> {{field}}</div>
+            {% for error in field.errors %}
+            <div class="col-sm-4">
+                {{error}}
+            </div>
+            {% endfor %}
+            </div>
+            {% endfor%}
+            {% for error in fm.non_field_errors %}
+            <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+            </div>
+           {% endfor %}
+            <input type="submit" value="login"/>
+            <div>
+        </form>
+{% endblock %}
+   
+
